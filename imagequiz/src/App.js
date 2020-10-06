@@ -16,7 +16,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Hello World 2: Electric Boogaloo
         </a>
       </header>
     </div>
