@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 class Login extends React.Component {
     constructor(props) {
@@ -23,10 +24,18 @@ class Login extends React.Component {
     }
 
     render() {
-        return(
+        let from = {pathname: '/', state: {user: this.state.username}};
+
+        if(this.state.authenticated) {
+            return (
+                <Redirect to={from} />
+            );
+        }
+
+        return (
             <div>
                 <form onSubmit={this.onSubmit}>
-                    <label>Username:</label>
+                    <lable>Username:</lable>
                     <input 
                         type="text" 
                         name="username"
