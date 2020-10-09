@@ -24,7 +24,7 @@ class Login extends React.Component {
     }
 
     render() {
-        let from = {pathname: '/', state: {user: this.state.username}};
+        let from = {pathname: '/imagequiz/', state: {user: this.state.username}};
 
         if(this.state.authenticated) {
             return (

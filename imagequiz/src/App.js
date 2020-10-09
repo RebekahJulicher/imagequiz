@@ -12,7 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path='/' render={props => <Home {...props} />}>
+        <Route exact path='/imagequiz/' render={props => <Home {...props} />}>
         </Route>
         <Route path='/login'>
           <Login />
