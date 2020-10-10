@@ -4,7 +4,7 @@ import './Home.css';
 import cherry from "../../src/images/cherryblossom.png";
 import daffodil from "../../src/images/daffodil.png";
 import daisy from "../../src/images/daisy.jpg";
-import lily from "../../src/images/daisy.jpg";
+import lily from "../../src/images/lily.jpg";
 import rose from "../../src/images/rose.png";
 import sunflower from "../../src/images/sunflower.png";
 import tulip from "../../src/images/tulip.png";
