@@ -39,12 +39,14 @@ class Home extends React.Component {
                     <h1>Big Ol' Homepage</h1>
                 </div>
                 <div className="pictureDiv">
-                    <figure className="figure">
-                        <img src={cherry} />
-                        <figcaption>
-                            Cherry Blossom
-                        </figcaption>
-                    </figure>
+                    <Link to='/quiz1'>
+                        <figure className="figure">
+                            <img src={cherry} />
+                            <figcaption>
+                                Cherry Blossom
+                            </figcaption>
+                        </figure>
+                    </Link>
                     <figure className="figure">
                         <img src={daffodil} />
                         <figcaption>
