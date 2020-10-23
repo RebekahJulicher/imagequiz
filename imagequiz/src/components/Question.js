@@ -1,4 +1,5 @@
 import React from 'react';
+import './Quiz.css';
 
 class Question extends React.Component {
     constructor(props) {
@@ -25,10 +26,10 @@ class Question extends React.Component {
             <div>
                 <div><img src={require("../images/" + question.picture)} alt={question.picture} /></div>
                 <br />
-                <div>{question.title}</div>
+                <p className="title">{question.title}</p>
                 <br />
                 {question.choices.map((c, i) =>
-                    <div key={i}>
+                    <div className="options" key={i}>
                         <input type="radio" id={c} name="choice" value={c} 
                         checked = {c === this.state.userAnswers[cursor] ? 'checked' : ''} 
                         onChange={this.onInputChange}/>

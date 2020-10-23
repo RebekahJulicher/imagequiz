@@ -9,17 +9,15 @@ class Home extends React.Component {
         this.state = {
             username: '',
             data: [],
-            status: {
-                1: false,
-                2: false,
-                3: false
-            }
         };
     }
 
-    hasCompleted = (id) => {
-        this.setState({ status:{[id]: true}});
-    }
+    /* Maintaining score between quizzes doesn't work because App.js rebuilds this
+     entire page every time it redirects to it. Login info doesn't stay in place
+     after taking a quiz either. I was fiddling with adding methods and global variables
+     to App.js, but it didn't work out.
+     I asked some questions on Piazza about this, but didn't get a response.
+     */
 
     body = () => {
         return (
@@ -27,18 +25,13 @@ class Home extends React.Component {
                 {this.state.data.length > 0 ?
                     <div>
                         {this.state.data.map((q, i) =>
-                            <div key={i}>
-                                {this.state.status[q.id] === false ? 
-                                <Link to={{pathname: "/quiz", state: {id: q.id}}}
-                                onClick={() => this.hasCompleted(q.id)}>
+                            <div className="pictureDiv" key={i}>
+                                <Link className="quizLink" to={{pathname: "/quiz", state: {id: q.id}}}>
                                     <figure>
                                         <img src={require ("../images/" + q.picture)}></img>
                                         <figcaption>{q.title}</figcaption>
                                     </figure>
                                 </Link>
-                                :
-                                <Link to={{pathname: "/quiz", state: {id: q.id}}}>Retry</Link>
-                                }
                             </div>)}
                     </div>
                     : ""}

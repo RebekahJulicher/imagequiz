@@ -1,6 +1,7 @@
 import React from 'react';
 import server from '../ServerInterface/server';
 import Question from './Question';
+import './Quiz.css';
 
 class Quiz extends React.Component {
     constructor(props) {
@@ -47,18 +48,19 @@ class Quiz extends React.Component {
     render() {
         const { data, cursor, showResults } = this.state;
         return (
-            <div className="Content">
+            <div className="content">
                 {showResults === false ? 
-                <div>
+                <div className="questionDiv">
                     {data.questions ? <Question question = {data.questions[cursor]} 
-                    onChoiceSelected = {this.onChoiceSelected}
-                    cursor = {cursor} /> : ''}
+                    onChoiceSelected = {this.onChoiceSelected} cursor = {cursor} /> : ''}
+                    <br />
                     <button onClick={this.goToLast}>Back</button>
                     <button onClick={this.goToNext}>Next</button>
                 </div>
                 : 
-                <div>
-                    <h1>You scored: {this.state.score}/6 correct.</h1>
+                <div className="resultDiv">
+                    <h1>You scored {this.state.score}/6 correct.</h1>
+                    <br />
                     <button onClick={this.retry}>Retry</button>
                     <button onClick={event => window.location.href='/imagequiz'}>Finish</button>
                 </div>
