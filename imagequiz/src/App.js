@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Home from './components/Home';
 import Login from './components/Login';
-import Quiz1 from './components/Quiz-1';
+import Quiz from './components/Quiz';
 import './App.css';
 
 function App() {
@@ -18,8 +18,7 @@ function App() {
         <Route path='/login'>
           <Login />
         </Route>
-        <Route path='/quiz1'>
-          <Quiz1 />
+        <Route path='/quiz' render={props => <Quiz {...props} />}>
         </Route>
       </Switch>
     </BrowserRouter>

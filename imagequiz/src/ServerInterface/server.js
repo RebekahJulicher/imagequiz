@@ -1,4 +1,4 @@
 import quizzes from "./data";
-let server = {getquizzes: () => {return quizzes;}, 
-getquestions: (i) => {return quizzes[i];}};
+let server = {getQuizzes: () => {return quizzes;}, 
+getQuiz: (i) => {return quizzes.find(x => x.id===i);}};
 export default server;

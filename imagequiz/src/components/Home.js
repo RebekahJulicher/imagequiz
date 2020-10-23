@@ -1,21 +1,54 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
-import cherry from "../../src/images/cherryblossom.png";
-import daffodil from "../../src/images/daffodil.png";
-import daisy from "../../src/images/daisy.jpg";
-import lily from "../../src/images/lily.jpg";
-import rose from "../../src/images/rose.png";
-import sunflower from "../../src/images/sunflower.png";
-import tulip from "../../src/images/tulip.png";
-import waterlily from "../../src/images/waterlily.png";
+import server from '../ServerInterface/server.js';
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: ''
+            username: '',
+            data: [],
+            status: {
+                1: false,
+                2: false,
+                3: false
+            }
         };
+    }
+
+    hasCompleted = (id) => {
+        this.setState({ status:{[id]: true}});
+    }
+
+    body = () => {
+        return (
+            <div>
+                {this.state.data.length > 0 ?
+                    <div>
+                        {this.state.data.map((q, i) =>
+                            <div key={i}>
+                                {this.state.status[q.id] === false ? 
+                                <Link to={{pathname: "/quiz", state: {id: q.id}}}
+                                onClick={() => this.hasCompleted(q.id)}>
+                                    <figure>
+                                        <img src={require ("../images/" + q.picture)}></img>
+                                        <figcaption>{q.title}</figcaption>
+                                    </figure>
+                                </Link>
+                                :
+                                <Link to={{pathname: "/quiz", state: {id: q.id}}}>Retry</Link>
+                                }
+                            </div>)}
+                    </div>
+                    : ""}
+            </div>
+        );
+    }
+
+    componentDidMount() {
+        let data = server.getQuizzes();
+        this.setState({ data: data });
     }
 
     render() {
@@ -29,67 +62,13 @@ class Home extends React.Component {
             }
         }
 
-        return(
+        return (
             <div>
                 <div className="loginButton">
                     {username.length > 0 ? username
-                    : <Link to='/login'>Login</Link>}
+                        : <Link to='/login'>Login</Link>}
                 </div>
-                <div className="headerDiv">
-                    <h1>Big Ol' Homepage</h1>
-                </div>
-                <div className="pictureDiv">
-                    <Link to='/quiz1'>
-                        <figure className="figure">
-                            <img src={cherry} />
-                            <figcaption>
-                                Cherry Blossom
-                            </figcaption>
-                        </figure>
-                    </Link>
-                    <figure className="figure">
-                        <img src={daffodil} />
-                        <figcaption>
-                            Daffodil
-                        </figcaption>
-                    </figure>
-                    <figure className="figure">
-                        <img src={daisy} />
-                        <figcaption>
-                            Daisy
-                        </figcaption>
-                    </figure>
-                    <figure className="figure">
-                        <img src={lily} />
-                        <figcaption>
-                            Lily
-                        </figcaption>
-                    </figure>
-                    <figure className="figure">
-                        <img src={rose} />
-                        <figcaption>
-                            Rose
-                        </figcaption>
-                    </figure>
-                    <figure className="figure">
-                        <img src={sunflower} />
-                        <figcaption>
-                            Sunflower
-                        </figcaption>
-                    </figure>
-                    <figure className="figure">
-                        <img src={tulip} />
-                        <figcaption>
-                            Tulip
-                        </figcaption>
-                    </figure>
-                    <figure className="figure">
-                        <img src={waterlily} />
-                        <figcaption>
-                            Waterlily
-                        </figcaption>
-                    </figure>
-                </div>
+                {this.body()}
             </div>
         )
     }
