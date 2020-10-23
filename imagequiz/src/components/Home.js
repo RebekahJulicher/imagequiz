@@ -12,8 +12,8 @@ class Home extends React.Component {
         };
     }
 
-    /* Maintaining score between quizzes doesn't work because App.js rebuilds this
-     entire page every time it redirects to it. Login info doesn't stay in place
+    /* Maintaining score between quizzes in this file doesn't work because App.js rebuilds
+     this entire page every time it redirects to it. Login info doesn't stay in place
      after taking a quiz either. I was fiddling with adding methods and global variables
      to App.js, but it didn't work out.
      I asked some questions on Piazza about this, but didn't get a response.
