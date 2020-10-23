@@ -13,8 +13,8 @@ choices: ["pickle", "rose", "cherry blossom"], correct: "rose"};
 let Quiz1 = {id: 1, title: "quiz 1", picture: "cherryblossom.png", 
 questions: [q1, q2, q3, q4, q5, q6]};
 let Quiz2 = {id: 2, title: "quiz 2", picture: "daisy.jpg", 
-questions: [q1, q2, q3, q4, q5, q6]};
+questions: [q2, q1, q4, q3, q6, q5]};
 let Quiz3 = {id: 3, title: "quiz 3", picture: "lily.jpg", 
-questions: [q1, q2, q3, q4, q5, q6]};
+questions: [q2, q3, q4, q5, q6, q1]};
 let quizzes = [Quiz1, Quiz2, Quiz3];
 export default quizzes;
