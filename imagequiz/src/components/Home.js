@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 import server from '../ServerInterface/server.js';
+import history from '../ServerInterface/history';
 
 class Home extends React.Component {
     constructor(props) {
@@ -12,24 +13,32 @@ class Home extends React.Component {
         };
     }
 
-    /* Maintaining score between quizzes in this file doesn't work because App.js rebuilds
-     this entire page every time it redirects to it. Login info doesn't stay in place
-     after taking a quiz either. I was fiddling with adding methods and global variables
-     to App.js, but it didn't work out.
-     I asked some questions on Piazza about this, but didn't get a response.
-     */
-
     body = () => {
+        let username = '';
+        const location = this.props.location
+        if (location) {
+            if (location.state) {
+                if (location.state.user) {
+                    username = location.state.user;
+                }
+            }
+        }
+        console.log(history)
         return (
             <div>
                 {this.state.data.length > 0 ?
                     <div>
                         {this.state.data.map((q, i) =>
                             <div className="pictureDiv" key={i}>
-                                <Link className="quizLink" to={{pathname: "/quiz", state: {id: q.id}}}>
+                                <Link className="quizLink" to={{
+                                    pathname: "/quiz", state:
+                                        { id: q.id, user: username }
+                                }}>
                                     <figure>
-                                        <img src={require ("../images/" + q.picture)}></img>
-                                        <figcaption>{q.title}</figcaption>
+                                        <img src={require("../images/" + q.picture)}></img>
+                                        <figcaption>{q.title}
+                                            {history[q.id] ? " - Try Again?" : ""}
+                                        </figcaption>
                                     </figure>
                                 </Link>
                             </div>)}
