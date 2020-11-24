@@ -1,4 +1,4 @@
-let API = "https://rebekahjulicher-imagequiz.herokuapp.com";
+let API = "http://localhost:3001";
 let getQuizzes = () => {
     return(fetch (API + "/quizzes").then(x => x.json()));
 }

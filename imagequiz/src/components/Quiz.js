@@ -29,7 +29,7 @@ class Quiz extends React.Component {
                     score += 1;
                 }
             }
-            server.saveScore()
+            server.saveScore(this.props.location.state.user, this.props.location.state.id, score).catch(e => console.log(e));
             this.setState({ showResults: true, score: score });
         }
     }
