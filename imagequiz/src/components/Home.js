@@ -49,8 +49,7 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        let data = server.getQuizzes();
-        this.setState({ data: data });
+        server.getQuizzes().then(data => this.setState({data: data}));
     }
 
     render() {

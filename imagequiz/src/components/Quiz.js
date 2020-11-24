@@ -10,7 +10,7 @@ class Quiz extends React.Component {
         super(props);
         this.answers = [];
         this.state = {
-            data: {},
+            data: [],
             cursor: 0,
             score: 0,
             showResults: false
@@ -18,7 +18,7 @@ class Quiz extends React.Component {
     }
 
     goToNext = () => {
-        if (this.state.cursor < this.state.data.questions.length - 1) {
+        if (this.state.cursor < this.state.data.length - 1) {
             this.setState({ cursor: this.state.cursor + 1 });
         }
         else {
@@ -29,6 +29,7 @@ class Quiz extends React.Component {
                     score += 1;
                 }
             }
+            server.saveScore()
             this.setState({ showResults: true, score: score });
         }
     }
@@ -49,8 +50,8 @@ class Quiz extends React.Component {
     }
 
     componentDidMount() {
-        let data = server.getQuiz(this.props.location.state.id);
-        this.setState({ data: data });
+        server.getQuiz(this.props.location.state.id).then(data => {console.log(data);
+        this.setState({data: data});});
     }
 
     render() {
@@ -59,7 +60,7 @@ class Quiz extends React.Component {
             <div className="content">
                 {showResults === false ?
                     <div className="questionDiv">
-                        {data.questions ? <Question question={data.questions[cursor]}
+                        {data.length > 0 ? <Question question={data[cursor]}
                             onChoiceSelected={this.onChoiceSelected} cursor={cursor} /> : ''}
                         <br />
                         <button onClick={this.goToLast}>Back</button>
