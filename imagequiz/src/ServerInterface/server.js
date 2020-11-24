@@ -1,4 +1,4 @@
-let API = "http://localhost:3001";
+let API = "https://rebekahjulicher-imagequiz.herokuapp.com";
 let getQuizzes = () => {
     return(fetch (API + "/quizzes").then(x => x.json()));
 }
@@ -11,5 +11,6 @@ let saveScore = (username, id, score) => {
     {method: "POST", headers: {"CONTENT-TYPE": "application/json"}, body: JSON.stringify(data)})
     .then(x => x.json()));
 }
+
 let server = {getQuizzes: getQuizzes, getQuiz: getQuiz, saveScore: saveScore};
 export default server;
